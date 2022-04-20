@@ -1,11 +1,11 @@
-public class CreaDato extends Thread{
+public class CreaDato2 extends Thread{
     Semaforo pieno;
     Semaforo vuoto;
     static int tanti = 5;
     final int attesa = 500;
     static int repI;
 
-    public CreaDato(Semaforo s1, Semaforo s2) {
+    public CreaDato2(Semaforo s1, Semaforo s2) {
         pieno = s1;
         vuoto = s2;
     }
@@ -15,15 +15,15 @@ public class CreaDato extends Thread{
             repI = i;
             try {
                 vuoto.p();
-            } catch (InterruptedException e) { e.printStackTrace();}
+            } catch (InterruptedException e) {e.printStackTrace();}
 
-            Main.buffer.uguale(i);
-            System.out.println("Scrittore: dato scritto: " + Main.buffer.getValore());
+            Main.buffer.raddoppia();
+            System.out.println("Scrittore 2: dato scritto: " + Main.buffer.getValore());
             pieno.v();
             try{
                 Thread.sleep(attesa);
             } catch(Exception e) {e.printStackTrace();}
         }
-        System.out.println("Scrittore: termina scrittura dati.");
+        System.out.println("Scrittore 2: termina scrittura dati.");
     }
 }

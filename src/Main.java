@@ -1,12 +1,15 @@
 public class Main {
-    protected static int buffer = 0;
-    public static void main(String[] args) throws Exception {
-        Semaforo rosso = new Semaforo(0);
-        Semaforo verde = new Semaforo(1);
-        CreaDato c = new CreaDato(verde , rosso);
-        EliminaDato e = new EliminaDato(verde , rosso);
-        c.start();
-        e.start();
-        System.out.println("Termine avvio thread");
+    protected static Contatore buffer = new Contatore(0);
+    public static void main(String[] args) {
+        Semaforo pieno = new Semaforo(0);
+        Semaforo vuoto = new Semaforo(1);
+        CreaDato p1 = new CreaDato(pieno, vuoto);
+        CreaDato2 p2 = new CreaDato2(pieno, vuoto);
+        Eliminadato c1 = new Eliminadato(pieno, vuoto);
+        Eliminadato2 c2 = new Eliminadato2(pieno, vuoto);
+        p1.start();
+        c1.start();
+        p2.start();
+        c2.start();
     }
 }

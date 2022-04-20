@@ -1,23 +1,25 @@
-public class Semaforo extends Thread{
-    int luce;
+public class Semaforo {
+    private int valore;
 
-    public Semaforo(int luce){
-        this.luce = luce;
+    public Semaforo(int v) {
+        valore = v;
     }
 
-    synchronized public void semaforoRosso(){
-        while (luce == 0) {
+    synchronized public void p() throws InterruptedException {
+        while(valore == 0) {
             try {
                 wait();
-            } catch (Exception e) {}
+            } catch (Exception e) {e.printStackTrace();}
         }
-        luce--;
+        valore--;
     }
 
-    synchronized public void semaforoVerde(){
-       luce++;
-       notify();
+    synchronized public void v() {
+        valore++;
+        notify();
     }
 
-
+    public int getValore() {
+        return valore;
+    }
 }
